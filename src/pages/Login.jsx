@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/reg.css'
+import { auth } from '../firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 const Login = () => {
 	const [error, setError] = useState(false)
-	const [email, setEmail] = useState('')
-	const [pass, setPass] = useState('')
+	const [serverError, setServerError] = useState(false)
 	const navigate = useNavigate()
-	const handleSubmit = async event => {
-		event.preventDefault()
-		navigate('/')
+
+	async function handleSubmit(e) {
+		e.preventDefault()
+		const email = e.target[0].value
+		const password = e.target[1].value
+		try {
+			await signInWithEmailAndPassword(auth, email, password)
+			navigate('/')
+		} catch (err) {
+			console.log('big error')
+			setError(true)
+			setServerError(true)
+		}
 	}
 	return (
 		<form onSubmit={handleSubmit} className='formContainer'>
@@ -17,21 +28,13 @@ const Login = () => {
 				<span className='logo'>Chat</span>
 				<span className='title'>Login</span>
 				<div className='form'>
+					<input type='email' className='form-input' placeholder='email' />
 					<input
-						value={email}
-						type='email'
-						className='form-input'
-						placeholder='email'
-						onChange={e => setEmail(e.target.value)}
-					/>
-					<input
-						value={pass}
 						type='password'
 						className='form-input'
 						placeholder='password'
-						onChange={e => setPass(e.target.value)}
 					/>
-					{error ? (
+					{error || serverError ? (
 						<span className='error'>Wrong true login or password</span>
 					) : (
 						''

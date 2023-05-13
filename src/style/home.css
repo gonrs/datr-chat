@@ -78,9 +78,9 @@ h1 {
 	color: lightgray;
 }
 .userChat img {
-	width: 50px;
+	width: 40px;
 	object-fit: cover;
-	height: 50px;
+	height: 40px;
 	border-radius: 50%;
 }
 .userChat {
