@@ -203,3 +203,13 @@ h1 {
 .message.owner .messageContent {
 	align-items: flex-end;
 }
+.Loading {
+	background-color: #8da4f1;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	color: white;
+}
