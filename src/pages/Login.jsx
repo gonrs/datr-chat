@@ -42,7 +42,7 @@ const Login = () => {
 					<button>Sing up</button>
 				</div>
 				<p>
-					Yo dot`t have account?{' '}
+					You don`t have account?{' '}
 					<Link className='form-link' to='/register'>
 						Register
 					</Link>
