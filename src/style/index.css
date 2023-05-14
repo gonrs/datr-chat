@@ -21,6 +21,6 @@ select:focus,
 button:focus {
 	outline: none;
 }
-button{
+button {
 	cursor: pointer;
 }
