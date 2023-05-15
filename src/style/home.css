@@ -1,5 +1,5 @@
 .home {
-	background-color: #a7bcff;
+	background-color: #121829;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -8,7 +8,8 @@
 	gap: 10px;
 }
 .home-container {
-	border: 1px solid #fff;
+	border: 3px solid #18147f;
+	box-shadow: 0px 0px 20px #18147f;
 	border-radius: 10px;
 	width: 65%;
 	height: 80%;
@@ -24,16 +25,18 @@ h1 {
 }
 .sidebar {
 	flex: 1;
-	border-right: 1px solid #3e3c61;
-	background-color: #3e3c61;
+	border-right: 3px solid #18147f;
+	background-color: #171f35;
 }
 .chat {
 	flex: 2;
+	background-color: #171f35;
 }
 .navbar {
 	display: flex;
 	align-items: center;
-	background-color: #2f2d52;
+	background-color: #171f35;
+	border-bottom: 2px solid #18147f;
 	height: 50px;
 	padding: 10px;
 	justify-content: space-between;
@@ -55,15 +58,17 @@ h1 {
 	object-fit: cover;
 }
 .user button {
-	background-color: #5d5b8d;
+	background-color: #1c197f;
 	color: #ddddf7;
-	font-size: 10px;
+	font-size: 12px;
+	border-radius: 10px;
 	cursor: pointer;
 	padding: 5px;
 	border: none;
 }
 .search {
-	border-bottom: 1px solid gray;
+	border-bottom: 2px solid #18147f;
+	background-color: #1d2743;
 }
 .searchForm {
 	padding: 10px;
@@ -85,14 +90,16 @@ h1 {
 }
 .userChat {
 	padding: 10px;
+	border-bottom: 2px solid #18147f;
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	color: white;
 	cursor: pointer;
+	background-color: #171f35;
 }
 .userChat:hover {
-	background-color: #2f2d52;
+	background-color: #1c197f;
 	transition: all 0.3s;
 }
 .userChatInfo p {
@@ -108,7 +115,7 @@ h1 {
 }
 .chatnInfo {
 	height: 50px;
-	background-color: #5d5b8d;
+	background-color: #171f35;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -124,14 +131,13 @@ h1 {
 	cursor: pointer;
 }
 .messages {
-	background-color: #ddddf7;
+	background-color: #222e4e;
 	overflow-y: scroll;
 	padding: 10px;
 	height: calc(100% - 160px);
 }
 .chatInput {
-	height: 50px;
-	background-color: white;
+	background-color: #171f35;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -139,10 +145,12 @@ h1 {
 }
 .chatInput input {
 	width: 100%;
+	background-color: #171f35;
 	border: none;
 	outline: none;
 	font-size: 18px;
-	color: #2f2d52;
+	padding: 15px 10px;
+	color: #ffffff;
 }
 .chatInput input::placeholder {
 	color: lightgray;
@@ -224,10 +232,13 @@ h1 {
 }
 .messagesEd {
 	height: 100%;
-	background-color: #ddddf7;
+	background-color: #222e4e;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+}
+.chats{
+	background-color: #1d2743;
 }

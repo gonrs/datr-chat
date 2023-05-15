@@ -1,12 +1,14 @@
 .formContainer {
 	height: 100vh;
-	background-color: #a7bcff;
+	background-color: #121829;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 .formWrapper {
-	background-color: white;
+	background-color: #171f35;
+	border: 3px solid #18147f;
+	box-shadow: 0px 0px 20px #18147f;
 	padding: 20px 20px;
 	border-radius: 10px;
 	display: flex;
@@ -16,6 +18,7 @@
 }
 .formWrapperE {
 	box-shadow: 0px 2px 10px 1px #f06f6f;
+	border: 1px solid #f06f6f;
 }
 .formWrapperE input {
 	border: none;
@@ -26,7 +29,7 @@
 	border: 1px solid #f06f6f;
 }
 .logo {
-	color: #5d5d8d;
+	color: #dadaee;
 	font-weight: bold;
 	font-size: 24px;
 }
@@ -40,34 +43,35 @@
 	padding: 15px;
 	border-radius: 5px;
 	border: none;
-	border-bottom: 1px solid#a7bcff;
+	border: 1px solid #222e4e;
+	color: #fff;
+	background-color: #222e4e;
 }
 .form-input:focus {
 	border: none;
-	border: 1px solid #a7bcff;
-	background-color: #f6fbff;
+	border: 1px solid #18147f;
 }
 .form-input::placeholder {
-	color: rgb(175, 175, 175);
+	color: rgb(186, 184, 184);
 }
 .title {
-	color: #5d5d8d;
+	color: #cdcdf1;
 	font-size: 12px;
 }
 .form button {
-	background-color: #7b96ec;
+	background-color: #1c197f;
 	color: #fff;
 	padding: 10px;
 	font-weight: bold;
 	border: none;
 }
 .formWrapper p {
-	color: #5d5d8d;
+	color: #c5c5e8;
 	font-size: 12px;
 	margin-top: 10px;
 }
 .form-link {
-	color: #5d5d8d;
+	color: #c5c5e8;
 	border-bottom: 1px solid #5d5d8d;
 }
 .input {
@@ -79,7 +83,8 @@
 	align-items: center;
 	gap: 5px;
 	font-size: 12px;
-	color: #5d5d8d;
+	padding-left: 10px;
+	color: #c0c0ed;
 }
 .img {
 	width: 22px;

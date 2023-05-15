@@ -29,7 +29,7 @@ function Chat() {
 				</>
 			) : (
 				<div className='messagesEd'>
-					<h2>Welkom to Datr!</h2>
+					<h2 style={{ color: '#fff' }}>Welcome to Datr!</h2>
 				</div>
 			)}
 		</div>
