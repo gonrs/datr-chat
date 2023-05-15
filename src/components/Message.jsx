@@ -3,10 +3,8 @@ import { ChatContext } from '../context/ChatContext'
 import { AuthContext } from '../context/AuthContext'
 
 function Message({ message }) {
-	console.log(message)
 	const { currentUser } = useContext(AuthContext)
 	const { data } = useContext(ChatContext)
-
 	const ref = useRef()
 	useEffect(() => {
 		ref.current?.scrollIntoView({ behavior: 'smooth' })

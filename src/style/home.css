@@ -222,3 +222,12 @@ h1 {
 	border: none;
 	border-radius: 50%;
 }
+.messagesEd {
+	height: 100%;
+	background-color: #ddddf7;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}

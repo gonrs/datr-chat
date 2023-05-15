@@ -8,22 +8,30 @@ import { ChatContext } from '../context/ChatContext'
 
 function Chat() {
 	const { data } = useContext(ChatContext)
-
+	console.log(data.user)
 	return (
 		<div className='chat'>
-			<div className='chatnInfo'>
-				{data.user.photoURL ? (
-					<img className='chat-info-img' src={data.user?.photoURL} alt='' />
-				) : null}
-				<span>{data.user?.displayName}</span>
-				<div className='chatIcons'>
-					<img src={Cam} alt='' />
-					<img src={Add} alt='' />
-					<img src={More} alt='' />
+			{data.user.uid ? (
+				<>
+					<div className='chatnInfo'>
+						{data.user.photoURL ? (
+							<img className='chat-info-img' src={data.user?.photoURL} alt='' />
+						) : null}
+						<span>{data.user?.displayName}</span>
+						<div className='chatIcons'>
+							<img src={Cam} alt='' />
+							<img src={Add} alt='' />
+							<img src={More} alt='' />
+						</div>
+					</div>
+					<Messages />
+					<Input />
+				</>
+			) : (
+				<div className='messagesEd'>
+					<h2>Welkom to Datr!</h2>
 				</div>
-			</div>
-			<Messages />
-			<Input />
+			)}
 		</div>
 	)
 }
