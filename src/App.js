@@ -14,6 +14,12 @@ function App() {
 		}
 		return children
 	}
+	const ProtectedRoot2 = ({ children }) => {
+		if (currentUser) {
+			return <Navigate to='/' />
+		}
+		return children
+	}
 
 	return (
 		<Routes>
@@ -25,8 +31,22 @@ function App() {
 				}
 				path='/'
 			/>
-			<Route path='/login' element={<Login />} />
-			<Route path='/register' element={<Registr />} />
+			<Route
+				path='/login'
+				element={
+					<ProtectedRoot2>
+						<Login />
+					</ProtectedRoot2>
+				}
+			/>
+			<Route
+				path='/register'
+				element={
+					<ProtectedRoot2>
+						<Registr />{' '}
+					</ProtectedRoot2>
+				}
+			/>
 		</Routes>
 	)
 }

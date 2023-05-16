@@ -79,7 +79,6 @@ function Input() {
 				placeholder='Type something'
 			/>
 			<div className='send'>
-				<img src={Attach} alt='' />
 				<input
 					type='file'
 					onChange={e => setImg(e.target.files[0])}
@@ -89,7 +88,9 @@ function Input() {
 				<label htmlFor='file'>
 					<img src={Img} alt='' />
 				</label>
-				<button type='submit'>Send</button>
+				<button style={{ backgroundColor: '#18147f' }} type='submit'>
+					Send
+				</button>
 			</div>
 		</form>
 	)

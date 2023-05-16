@@ -20,17 +20,18 @@ function Search() {
 
 	async function handleSearch() {
 		console.log('serach...')
-
 		try {
-			const q = query(
-				collection(db, 'users'),
-				where('displayName', '==', userName)
-			)
-			const queruSnapshot = await getDocs(q)
-			queruSnapshot.forEach(data => {
-				setUser(data.data())
-			})
-			console.log(user)
+			if (userName != currentUser.displayName) {
+				const q = query(
+					collection(db, 'users'),
+					where('displayName', '==', userName)
+				)
+				const queruSnapshot = await getDocs(q)
+				queruSnapshot.forEach(data => {
+					setUser(data.data())
+				})
+				console.log(user)
+			}
 		} catch (err) {
 			setErr(true)
 			setUser(null)

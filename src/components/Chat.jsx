@@ -20,8 +20,9 @@ function Chat() {
 						<span>{data.user?.displayName}</span>
 						<div className='chatIcons'>
 							<img src={Cam} alt='' />
-							<img src={Add} alt='' />
-							<img src={More} alt='' />
+							<button className='chatButton'>
+								<img src={More} alt='' />
+							</button>
 						</div>
 					</div>
 					<Messages />

@@ -23,4 +23,5 @@ button:focus {
 }
 button {
 	cursor: pointer;
+	border: none;
 }
