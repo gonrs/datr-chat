@@ -8,7 +8,7 @@ import { ChatContext } from '../context/ChatContext'
 
 function Chat() {
 	const { data } = useContext(ChatContext)
-	console.log(data.user)
+	const [showModal, setShowModal] = useState(false)
 	return (
 		<div className='chat'>
 			{data.user.uid ? (
@@ -20,9 +20,30 @@ function Chat() {
 						<span>{data.user?.displayName}</span>
 						<div className='chatIcons'>
 							<img src={Cam} alt='' />
-							<button className='chatButton'>
+							<button
+								onClick={() => {
+									setShowModal(!showModal)
+								}}
+								style={
+									showModal
+										? { transform: 'rotate(90deg)', transition: 'all 0.3s' }
+										: { transform: 'rotate(0)', transition: 'all 0.3s' }
+								}
+								className='chatButton'
+							>
 								<img src={More} alt='' />
 							</button>
+							{showModal && (
+								<div className='chatModalSet'>
+									{data.user.photoURL ? (
+										<img src={data.user?.photoURL} alt='' />
+									) : null}
+									{data.user.displayName ? (
+										<p>{data.user.displayName}</p>
+									) : null}
+									<button onClick={() => {}}>Clear messages</button>
+								</div>
+							)}
 						</div>
 					</div>
 					<Messages />

@@ -9,7 +9,8 @@ function Message({ message }) {
 	useEffect(() => {
 		ref.current?.scrollIntoView({ behavior: 'smooth' })
 	}, [message])
-
+	// let h = Math.round(message.date.seconds / 60 / 60 / 24)
+	// let m = Math.round(message.date.seconds / 60 / 60)
 	return (
 		<div
 			ref={ref}
@@ -24,6 +25,7 @@ function Message({ message }) {
 					}
 					alt=''
 				/>
+				{/* <span>{`${h}:${m}`}</span> */}
 				<span>now</span>
 			</div>
 			<div className='messageContent '>

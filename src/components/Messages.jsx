@@ -16,7 +16,6 @@ function Messages() {
 			onSub()
 		}
 	}, [data.chatId])
-
 	return (
 		<div className='messages'>
 			{messages?.map((value, index) => {

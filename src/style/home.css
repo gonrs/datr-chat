@@ -120,6 +120,7 @@ h1 {
 	color: lightgray;
 }
 .chatIcons {
+	position: relative;
 	display: flex;
 	gap: 10px;
 	align-items: center;
@@ -279,4 +280,38 @@ h1 {
 .chatButton {
 	background-color: #171f35;
 	border: none;
+}
+.chatModalSet {
+	position: absolute;
+	right: 25%;
+	top: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #1d2641;
+	border: 2.5px solid #18147f;
+}
+.chatModalSet button {
+	font-size: 15px;
+	color: #fff;
+	background-color: #1d2641;
+	width: 100%;
+	padding: 10px 0;
+}
+.chatModalSet button:hover {
+	transition: all 0.3s;
+	background-color: #18147f;
+}
+.chatModalSet img {
+	width: 80px;
+	padding: 10px 30px;
+	height: 80px;
+	border-radius: 50%;
+}
+.chatModalSet p {
+	padding: 0 0 5px 0;
+	margin: 0;
+	width: 100%;
+	border-bottom: 3px solid #18147f;
+	text-align: center;
 }
