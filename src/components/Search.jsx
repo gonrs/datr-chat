@@ -83,6 +83,7 @@ function Search() {
 		setUserName('')
 		//
 	}
+
 	return (
 		<div className='search'>
 			<div className='searchForm'>
@@ -92,7 +93,6 @@ function Search() {
 					onKeyDown={hendleKey}
 					onChange={e => {
 						setUserName(e.target.value)
-						// handleSearch()
 					}}
 					name=''
 					id=''
@@ -101,8 +101,9 @@ function Search() {
 			</div>
 			{err && <span>User not found!</span>}
 			{/* {!user && userName && <span>User not found!</span>} */}
+
 			{user && userName && user.displayName == userName ? (
-				<div onClick={handleSelect} className='userChat'>
+				<div onClick={handleSelect} className={`userChat `}>
 					<img src={user.photoURL} alt='' />
 					<div className='userChatInfo'>
 						<span>{user.displayName}</span>

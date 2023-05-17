@@ -13,6 +13,8 @@ const Register = () => {
 	const [serverError, setServerError] = useState(false)
 	const navigate = useNavigate()
 
+	const [color, setColor] = useState('#18147f')
+
 	async function handleRegister(e) {
 		e.preventDefault()
 		const displayName = e.target[0].value
@@ -44,6 +46,7 @@ const Register = () => {
 							displayName,
 							email,
 							photoURL: downloadURL,
+							phoneNumber: color,
 						})
 						console.log('add users success')
 						await setDoc(doc(db, 'userChats', res.user.uid), {})
@@ -81,6 +84,41 @@ const Register = () => {
 						<img className='img' src={img1} alt='' />
 						Add avatar
 					</label>
+					<div className='register-theme'>
+						<div
+							style={
+								color == '#18147f'
+									? { border: '7px solid #18147f', backgroundColor: '#18147f' }
+									: { border: '7px solid #18147f' }
+							}
+							onClick={() => {
+								setColor('#18147f')
+							}}
+							className='theme'
+						></div>
+						<div
+							style={
+								color == '#238014'
+									? { border: '7px solid #238014', backgroundColor: '#238014' }
+									: { border: '7px solid #238014' }
+							}
+							onClick={() => {
+								setColor('#238014')
+							}}
+							className='theme'
+						></div>
+						<div
+							style={
+								color == '#801414'
+									? { border: '7px solid #801414', backgroundColor: '#801414' }
+									: { border: '7px solid #801414' }
+							}
+							onClick={() => {
+								setColor('#801414')
+							}}
+							className='theme'
+						></div>
+					</div>
 					{error && !serverError ? (
 						<span className='error'>Wrong correct info</span>
 					) : (

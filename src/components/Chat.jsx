@@ -1,14 +1,29 @@
 import React, { useContext, useState } from 'react'
 import Cam from '../img/cam.png'
-import Add from '../img/add.png'
 import More from '../img/more.png'
 import Messages from './Messages'
 import Input from './Input'
 import { ChatContext } from '../context/ChatContext'
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '../firebase'
+import { AuthContext } from '../context/AuthContext'
 
 function Chat() {
 	const { data } = useContext(ChatContext)
 	const [showModal, setShowModal] = useState(false)
+	const { currentUser } = useContext(AuthContext)
+	//
+	async function handleClear() {
+		await updateDoc(doc(db, 'chats', data.chatId), {
+			message: [],
+		})
+		await updateDoc(doc(db, 'userChats', currentUser.uid), {
+			[data.chatId + '.lastMessage']: {},
+		})
+		setShowModal(false)
+	}
+
+	//
 	return (
 		<div className='chat'>
 			{data.user.uid ? (
@@ -41,7 +56,7 @@ function Chat() {
 									{data.user.displayName ? (
 										<p>{data.user.displayName}</p>
 									) : null}
-									<button onClick={() => {}}>Clear messages</button>
+									<button onClick={handleClear}>Clear messages</button>
 								</div>
 							)}
 						</div>

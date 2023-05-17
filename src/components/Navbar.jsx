@@ -6,11 +6,13 @@ import { AuthContext } from '../context/AuthContext'
 function Navbar() {
 	const { currentUser } = useContext(AuthContext)
 	const [showSet, setShowSet] = useState(false)
+
 	return (
 		<div className='navbar'>
 			<div className='user'>
 				<img src={currentUser.photoURL} alt='' />
 				<span>{currentUser.displayName}</span>
+				<span>{currentUser.phoneNumber}</span>
 			</div>
 			<div className='userSet'>
 				<button

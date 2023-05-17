@@ -24,6 +24,8 @@ function Chats() {
 	function handleSelect(user) {
 		dispatch({ type: 'CHENGE_USER', payload: user })
 	}
+	//
+
 	return (
 		<div className='chats'>
 			{chats &&
@@ -37,7 +39,7 @@ function Chats() {
 						return (
 							<div
 								key={chat[0]}
-								className='userChat'
+								className={`userChat `}
 								onClick={() => handleSelect(chat[1].userInfo)}
 							>
 								<img src={chat[1].userInfo?.photoURL} alt='' />

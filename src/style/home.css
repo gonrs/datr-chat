@@ -94,10 +94,16 @@ h1 {
 	color: white;
 	cursor: pointer;
 	background-color: #171f35;
+	transition: all 0.3s;
 }
 .userChat:hover {
 	background-color: #1c197f;
-	transition: all 0.3s;
+}
+.userChat.red:hover {
+	background-color: red;
+}
+.userChat.green:hover {
+	background-color: green;
 }
 .userChatInfo p {
 	font-size: 14px;
@@ -314,4 +320,17 @@ h1 {
 	width: 100%;
 	border-bottom: 3px solid #18147f;
 	text-align: center;
+}
+.register-theme {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+.theme {
+	height: 20px;
+	border-radius: 10px;
+	width: 30px;
+	cursor: pointer;
 }
