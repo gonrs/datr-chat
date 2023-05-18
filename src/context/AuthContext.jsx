@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider value={{ currentUser }}>
-			{loading || (currentUser && theme == 'standart') ? <Loading /> : children}
+			{loading || (currentUser && theme === 'standart') ? <Loading /> : children}
 		</AuthContext.Provider>
 	)
 }

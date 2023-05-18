@@ -14,7 +14,7 @@ export function fetchUsers(currentUser, setUsers) {
 		// }
 		// return users
 		try {
-			let users = '#18147f'
+			// let users = '#18147f'
 			const unsubscribe = onSnapshot(
 				doc(db, 'users', currentUser && currentUser.uid),
 				doc => {
