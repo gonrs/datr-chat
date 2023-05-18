@@ -56,7 +56,7 @@ function Navbar() {
 							<div className='register-theme'>
 								<div
 									style={
-										color == '#18147f'
+										color === '#18147f'
 											? {
 													border: '7px solid #18147f',
 													backgroundColor: '#18147f',
@@ -70,7 +70,7 @@ function Navbar() {
 								></div>
 								<div
 									style={
-										color == '#238014'
+										color === '#238014'
 											? {
 													border: '7px solid #238014',
 													backgroundColor: '#238014',
@@ -84,7 +84,7 @@ function Navbar() {
 								></div>
 								<div
 									style={
-										color == '#801414'
+										color === '#801414'
 											? {
 													border: '7px solid #801414',
 													backgroundColor: '#801414',

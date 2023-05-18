@@ -21,7 +21,7 @@ function Search() {
 	async function handleSearch() {
 		console.log('serach...')
 		try {
-			if (userName != currentUser.displayName) {
+			if (userName !== currentUser.displayName) {
 				const q = query(
 					collection(db, 'users'),
 					where('displayName', '==', userName)
@@ -39,7 +39,7 @@ function Search() {
 	}
 
 	function hendleKey(e) {
-		e.code == 'Enter' && handleSearch()
+		e.code === 'Enter' && handleSearch()
 	}
 
 	async function handleSelect() {
@@ -102,7 +102,7 @@ function Search() {
 			{err && <span>User not found!</span>}
 			{/* {!user && userName && <span>User not found!</span>} */}
 
-			{user && userName && user.displayName == userName ? (
+			{user && userName && user.displayName === userName ? (
 				<div onClick={handleSelect} className={`userChat `}>
 					<img src={user.photoURL} alt='' />
 					<div className='userChatInfo'>

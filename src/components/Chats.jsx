@@ -5,7 +5,6 @@ import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext'
 
 function Chats() {
-	const [message, setMessage] = useState('')
 	const [chats, setChats] = useState([])
 	const { currentUser } = useContext(AuthContext)
 	const { dispatch } = useContext(ChatContext)

@@ -1,8 +1,5 @@
 import { createContext, useContext, useReducer, useState } from 'react'
 import { AuthContext } from './AuthContext.jsx'
-import { doc, getDoc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase.js'
-import { useEffect } from 'react'
 
 export const ChatContext = createContext()
 
@@ -12,7 +9,6 @@ export const ChatContextProvider = ({ children }) => {
 		chatId: 'null',
 		user: {},
 	}
-	const [color, setColor] = useState('#18147f')
 
 	const ChatReducer = (state, action) => {
 		switch (action.type) {

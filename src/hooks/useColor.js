@@ -9,13 +9,13 @@ export function useColor(currentUser) {
 			fetchUsers(currentUser, setColor)
 		}
 		let theme = 'standart'
-		if (color == '#238014') {
+		if (color === '#238014') {
 			theme = 'green'
 		}
-		if (color == '#801414') {
+		if (color === '#801414') {
 			theme = 'red'
 		}
-		if (color == '#18147f') {
+		if (color === '#18147f') {
 			theme = 'blue'
 		}
 		// console.log(theme)
