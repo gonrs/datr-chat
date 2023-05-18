@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import Img from '../img/img.png'
-import Attach from '../img/attach.png'
 import {
 	Timestamp,
 	arrayUnion,
@@ -88,9 +87,7 @@ function Input() {
 				<label htmlFor='file'>
 					<img src={Img} alt='' />
 				</label>
-				<button style={{ backgroundColor: '#18147f' }} type='submit'>
-					Send
-				</button>
+				<button type='submit'>Send</button>
 			</div>
 		</form>
 	)
