@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import { useState } from 'react'
 import { fetchUsers } from '../function/fetchUsers'
 
 export function useColor(currentUser) {
