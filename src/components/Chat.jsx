@@ -18,7 +18,10 @@ function Chat() {
 			message: [],
 		})
 		await updateDoc(doc(db, 'userChats', currentUser.uid), {
-			[data.chatId + '.lastMessage']: {},
+			[data.chatId + '.lastMessage']: { text: '' },
+		})
+		await updateDoc(doc(db, 'userChats', data.user.uid), {
+			[data.chatId + '.lastMessage']: { text: '' },
 		})
 		setShowModal(false)
 	}

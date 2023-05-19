@@ -18,7 +18,7 @@ export function fetchUsers(currentUser, setUsers) {
 			const unsubscribe = onSnapshot(
 				doc(db, 'users', currentUser && currentUser.uid),
 				doc => {
-					if (doc.exists) {
+					if (doc.exists()) {
 						setUsers(doc.data().theme)
 					}
 				}

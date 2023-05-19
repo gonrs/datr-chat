@@ -10,10 +10,8 @@ import '../style/reg.css'
 
 const Register = () => {
 	const [error, setError] = useState(false)
-	const [serverError, setServerError] = useState(false)
+	const [Texterror, setTextError] = useState(false)
 	const navigate = useNavigate()
-
-	// const [color, setColor] = useState('#18147f')
 
 	async function handleRegister(e) {
 		e.preventDefault()
@@ -21,44 +19,58 @@ const Register = () => {
 		const email = e.target[1].value
 		const password = e.target[2].value
 		const file = e.target[3].files[0]
-		try {
-			const res = await createUserWithEmailAndPassword(auth, email, password)
-			console.log('register success')
-			const storageRef = ref(storage, displayName)
+		if (displayName && email && password && file) {
+			try {
+				const res = await createUserWithEmailAndPassword(auth, email, password)
+				console.log('register success')
+				const storageRef = ref(storage, displayName)
+				const uploadTask = uploadBytesResumable(storageRef, file)
 
-			const uploadTask = uploadBytesResumable(storageRef, file)
-
-			uploadTask.on(
-				error => {
-					console.log(error)
-					console.log('upload error')
-					setError(true)
-				},
-				() => {
-					getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-						await updateProfile(res.user, {
-							displayName,
-							photoURL: downloadURL,
+				uploadTask.on(
+					error => {
+						console.log(error)
+						console.log('upload error')
+						setError(true)
+						setTextError('Используте другую картинку!')
+					},
+					() => {
+						getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+							await updateProfile(res.user, {
+								displayName,
+								photoURL: downloadURL,
+							})
+							console.log('profile success')
+							await setDoc(doc(db, 'users', res.user.uid), {
+								uid: res.user.uid,
+								displayName,
+								email,
+								photoURL: downloadURL,
+								theme: '#18147f',
+							})
+							console.log('add users success')
+							await setDoc(doc(db, 'userChats', res.user.uid), {})
+							console.log('add userChat success')
+							navigate('/')
 						})
-						console.log('profile success')
-						await setDoc(doc(db, 'users', res.user.uid), {
-							uid: res.user.uid,
-							displayName,
-							email,
-							photoURL: downloadURL,
-							theme: '#18147f',
-						})
-						console.log('add users success')
-						await setDoc(doc(db, 'userChats', res.user.uid), {})
-						console.log('add userChat success')
-						navigate('/')
-					})
-				}
-			)
-		} catch (err) {
-			console.log('big error')
+					}
+				)
+			} catch (err) {
+				console.log('big error')
+			}
+		} else {
 			setError(true)
-			setServerError(true)
+			if (!displayName) {
+				setTextError('Введите имя!')
+			}
+			if (!email) {
+				setTextError('Введите почту!')
+			}
+			if (!password) {
+				setTextError('Введите пароль!')
+			}
+			if (!file) {
+				setTextError('Выберете картинку!')
+			}
 		}
 	}
 	return (
@@ -84,16 +96,7 @@ const Register = () => {
 						<img className='img' src={img1} alt='' />
 						Add avatar
 					</label>
-					{error && !serverError ? (
-						<span className='error'>Wrong correct info</span>
-					) : (
-						''
-					)}
-					{serverError ? (
-						<span className='error'>This user is already logged in!</span>
-					) : (
-						''
-					)}
+					{error ? <span className='error'>{Texterror}</span> : ''}
 
 					<button>Sing up</button>
 				</div>

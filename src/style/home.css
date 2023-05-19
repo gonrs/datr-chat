@@ -115,7 +115,41 @@
 .home.red .chats {
 	background-color: #4e2222;
 }
-
+.settingsWrap.green {
+	background-color: #1d4325;
+}
+.settingsWrap.red {
+	background-color: #4e2222;
+}
+.settingsWrap.green .settingsForm button {
+	background-color: #1d4325;
+	border: 2px solid #179305;
+}
+.settingsWrap.red .settingsForm button {
+	background-color: #4e2222;
+	border: 2px solid #801414;
+}
+.settingsWrap.green button:hover {
+	background-color: #179305;
+}
+.settingsWrap.red button:hover {
+	background-color: #801414;
+}
+.settingsWrap.green .settingsBack {
+	background-color: #1d4325;
+	border: 2px solid #179305;
+}
+.settingsWrap.red .settingsBack {
+	background-color: #4e2222;
+	border: 2px solid #801414;
+}
+.settingsWrap.green .settingsBack:hover {
+	background-color: #179305;
+}
+.settingsWrap.red .settingsBack:hover {
+	background-color: #801414;
+}
+/*  */
 .home.green .navbarSet button {
 	background-color: #224e2e;
 }
@@ -153,7 +187,12 @@
 .home.red .chatButton {
 	background-color: #351717;
 }
-
+.home.green .navbar-logo {
+	background-color: #132b15;
+}
+.home.red .navbar-logo {
+	background-color: #351717;
+}
 .home.green .chatModalSet button {
 	background-color: #224e2e;
 }
@@ -215,6 +254,11 @@ h1 {
 }
 .navbar-logo {
 	font-weight: bold;
+	background-color: #171f35;
+}
+.navbar-logo img {
+	width: 25px;
+	height: 25px;
 }
 .user {
 	display: flex;
@@ -428,7 +472,7 @@ h1 {
 }
 .navbarSet {
 	position: absolute;
-	top: 25px;
+	top: 30px;
 	left: -40px;
 	background-color: #fff;
 	display: flex;
@@ -497,9 +541,9 @@ h1 {
 	gap: 30px;
 }
 .theme {
-	height: 20px;
-	border-radius: 10px;
-	width: 30px;
+	height: 60px;
+	border-radius: 50%;
+	width: 60px;
 	cursor: pointer;
 }
 .navbarSettings {
@@ -526,4 +570,83 @@ h1 {
 	margin-top: -20px;
 	border: none;
 	background: none;
+}
+.settingsWrap {
+	background-color: #121829;
+}
+.containerSet {
+	max-width: 1100px;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 00px 20px;
+	gap: 20px;
+	margin: 0 auto;
+}
+.settingsForm {
+	width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+.settingsFile {
+	width: 200px;
+	height: 200px;
+}
+.settingsImg {
+	cursor: pointer;
+	width: 200px;
+	border-radius: 50%;
+	height: 200px;
+}
+.settingsImg:hover {
+	opacity: 0.7;
+	transition: all 0.3s;
+}
+.settingsInput {
+	padding: 10px 40px;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 20px;
+	background-color: #121829;
+	border: 2px solid #121829;
+	color: #fff;
+	transition: all 0.3s;
+}
+.settingsInput:focus {
+	background-color: #1d2641;
+	border: 2px solid #18147f;
+}
+.settingsForm button {
+	color: #fff;
+	background-color: #1d2641;
+	border: 2px solid #18147f;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-size: 20px;
+	transition: all 0.3s;
+}
+.settingsForm button:hover {
+	background-color: #18147f;
+}
+.settingsBack {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 15px;
+	color: #fff;
+	background-color: #1d2641;
+	border: 2px solid #18147f;
+	padding: 10px 20px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.settingsBack:hover {
+	transition: all 0.3s;
+	background-color: #18147f;
 }

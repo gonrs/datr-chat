@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Registr from './pages/Register'
 import { useContext } from 'react'
 import { AuthContext } from './context/AuthContext'
+import Settings from './pages/Settings'
 
 function App() {
 	const { currentUser } = useContext(AuthContext)
@@ -30,6 +31,14 @@ function App() {
 					</ProtectedRoot>
 				}
 				path='/'
+			/>
+			<Route
+				element={
+					<ProtectedRoot>
+						<Settings />
+					</ProtectedRoot>
+				}
+				path='/settings'
 			/>
 			<Route
 				path='/login'

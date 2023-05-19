@@ -4,6 +4,8 @@ import { auth, db } from '../firebase'
 import { AuthContext } from '../context/AuthContext'
 import { doc, updateDoc } from 'firebase/firestore'
 import { useColor } from '../hooks/useColor'
+import gear from '../img/gear.png'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
 	const { currentUser } = useContext(AuthContext)
@@ -11,14 +13,13 @@ function Navbar() {
 	const [showSettings, setshowSettings] = useState(false)
 	//
 	const { color } = useColor(currentUser)
-	// const [color, setColor] = useState('#18147f')
 	async function toggleTheme(colors) {
-		// setColor(colors)
 		await updateDoc(doc(db, 'users', currentUser && currentUser.uid), {
 			theme: colors,
 		})
 	}
 	//
+	const navigate = useNavigate()
 	return (
 		<div className='navbar'>
 			<div className='user'>
@@ -34,19 +35,20 @@ function Navbar() {
 					}}
 					className='navbar-logo'
 				>
-					Datr
+					<img src={gear} alt='' />
 				</button>
 				{showSet && (
 					<div className='navbarSet'>
 						<button onClick={() => signOut(auth)}>Logout</button>
-						<button
+						<button onClick={() => navigate('/settings')}>Settings</button>
+						{/* <button
 							onClick={() => {
 								setShowSet(false)
 								setshowSettings(true)
 							}}
 						>
-							Settings
-						</button>
+							Theme
+						</button> */}
 					</div>
 				)}
 				{showSettings && (
