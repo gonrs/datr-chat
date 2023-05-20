@@ -96,7 +96,7 @@ function Search() {
 					}}
 					name=''
 					id=''
-					placeholder='Find usesrs'
+					placeholder='Find users'
 				/>
 			</div>
 			{err && <span>User not found!</span>}

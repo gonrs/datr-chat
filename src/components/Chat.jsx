@@ -25,7 +25,6 @@ function Chat() {
 		})
 		setShowModal(false)
 	}
-	console.log(data)
 	//
 	return (
 		<div className='chat'>

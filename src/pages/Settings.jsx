@@ -35,7 +35,8 @@ function Settings() {
 							displayName: value,
 							photoURL: downloadURL,
 						})
-						await updateDoc(doc(db, 'users', currentUser && currentUser.uid), {
+						await updateDoc(doc(db, 'users', currentUser?.uid), {
+							displayName: value,
 							photoURL: downloadURL,
 						})
 						navigate('/')
@@ -57,6 +58,7 @@ function Settings() {
 		})
 	}
 	const { theme } = useColor(currentUser)
+	console.log(currentUser)
 	return (
 		<div className={`settingsWrap ${theme}`}>
 			<div className='containerSet'>
