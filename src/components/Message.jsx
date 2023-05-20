@@ -30,7 +30,7 @@ function Message({ message }) {
 			</div>
 			<div className='messageContent '>
 				<p>{message.text}</p>
-				{message.img && <img src={message.img} alt='' />}
+				{message?.img && <img src={message.img} alt='' />}
 			</div>
 		</div>
 	)

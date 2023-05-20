@@ -25,11 +25,11 @@ function Chat() {
 		})
 		setShowModal(false)
 	}
-
+	console.log(data)
 	//
 	return (
 		<div className='chat'>
-			{data.user.uid ? (
+			{data.user.uid && data.user.uid !== currentUser.uid ? (
 				<>
 					<div className='chatnInfo'>
 						{data.user.photoURL ? (

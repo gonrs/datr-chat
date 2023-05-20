@@ -1,14 +1,18 @@
-import React, { useContext, useState } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import React, { useState } from 'react'
+// import { AuthContext } from '../context/AuthContext'
 import '../style/home.css'
 import { useNavigate } from 'react-router-dom'
 import { doc, updateDoc } from 'firebase/firestore'
-import { db, storage } from '../firebase'
+import { auth, db, storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { useColor } from '../hooks/useColor'
+import { updateProfile } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 function Settings() {
-	const { currentUser } = useContext(AuthContext)
+	// const { currentUser } = useContext(AuthContext)
+	const [currentUser] = useAuthState(auth)
+	const [value, setValue] = useState(currentUser.displayName)
 	const [file, setFile] = useState(null)
 	const bgFile =
 		file && typeof file !== 'string'
@@ -17,34 +21,34 @@ function Settings() {
 	//
 	async function handleSubmit(e) {
 		e.preventDefault()
-		if (file) {
-			try {
-				const storageRef = ref(storage, currentUser.displayName)
-				const uploadTask = uploadBytesResumable(storageRef, file)
-				uploadTask.on(
-					error => {
-						console.log(error)
-						console.log('upload error')
-					},
-					() => {
-						getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-							await updateDoc(
-								doc(db, 'users', currentUser && currentUser.uid),
-								{
-									photoURL: downloadURL,
-								}
-							)
-							navigate('/')
+		try {
+			const storageRef = ref(storage, currentUser.email)
+			const uploadTask = uploadBytesResumable(storageRef, file)
+			uploadTask.on(
+				error => {
+					console.log(error)
+					console.log('upload error')
+				},
+				() => {
+					getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+						await updateProfile(currentUser, {
+							displayName: value,
+							photoURL: downloadURL,
 						})
-					}
-				)
-			} catch (err) {
-				console.log(err)
-			}
+						await updateDoc(doc(db, 'users', currentUser && currentUser.uid), {
+							photoURL: downloadURL,
+						})
+						navigate('/')
+					})
+				}
+			)
+		} catch (err) {
+			console.log(err)
 		}
 	}
 	//
 	const navigate = useNavigate()
+	//
 	//
 	const { color } = useColor(currentUser)
 	async function toggleTheme(colors) {
@@ -74,7 +78,15 @@ function Settings() {
 					<label htmlFor='file' className='settingsFile'>
 						<img src={bgFile} className='settingsImg' alt='' />
 					</label>
-
+					<input
+						type='text'
+						className='settingsInput'
+						placeholder='Enter new Name..'
+						value={value}
+						onChange={e => {
+							setValue(e.target.value)
+						}}
+					/>
 					<button type='submite'> Save</button>
 				</form>
 				<div className='styles'>
@@ -82,43 +94,29 @@ function Settings() {
 					<div className='register-theme'>
 						<div
 							style={
-								color === '#18147f'
+								color === '#24242F'
 									? {
-											border: '7px solid #18147f',
-											backgroundColor: '#18147f',
+											border: '7px solid #3A3A47',
+											backgroundColor: '#3A3A47',
 									  }
-									: { border: '7px solid #18147f' }
+									: { backgroundColor: '#3A3A47', border: '7px solid #C4C4C6' }
 							}
 							onClick={() => {
-								toggleTheme('#18147f')
+								toggleTheme('#24242F')
 							}}
 							className='theme'
 						></div>
 						<div
 							style={
-								color === '#238014'
+								color === '#C4C4C6'
 									? {
-											border: '7px solid #238014',
-											backgroundColor: '#238014',
+											border: '7px solid #FDFDFD',
+											backgroundColor: '#FDFDFD',
 									  }
-									: { border: '7px solid #238014' }
+									: { backgroundColor: '#FDFDFD', border: '7px solid #24242F' }
 							}
 							onClick={() => {
-								toggleTheme('#238014')
-							}}
-							className='theme'
-						></div>
-						<div
-							style={
-								color === '#801414'
-									? {
-											border: '7px solid #801414',
-											backgroundColor: '#801414',
-									  }
-									: { border: '7px solid #801414' }
-							}
-							onClick={() => {
-								toggleTheme('#801414')
+								toggleTheme('#C4C4C6')
 							}}
 							className='theme'
 						></div>

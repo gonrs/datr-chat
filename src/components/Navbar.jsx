@@ -4,8 +4,8 @@ import { auth, db } from '../firebase'
 import { AuthContext } from '../context/AuthContext'
 import { doc, updateDoc } from 'firebase/firestore'
 import { useColor } from '../hooks/useColor'
-import gear from '../img/gear.png'
 import { useNavigate } from 'react-router-dom'
+import { ChatContext } from '../context/ChatContext'
 
 function Navbar() {
 	const { currentUser } = useContext(AuthContext)
@@ -20,26 +20,31 @@ function Navbar() {
 	}
 	//
 	const navigate = useNavigate()
+	const { dispatch } = useContext(ChatContext)
 	return (
 		<div className='navbar'>
-			<div className='user'>
-				<img src={currentUser.photoURL} alt='' />
-				<span>{currentUser.displayName}</span>
-				<span>{currentUser.phoneNumber}</span>
-			</div>
 			<div className='userSet'>
-				<button
+				<div
 					onClick={() => {
 						setShowSet(!showSet)
 						setshowSettings(false)
 					}}
-					className='navbar-logo'
+					style={{ cursor: 'pointer' }}
+					className='user'
 				>
-					<img src={gear} alt='' />
-				</button>
+					<span>{currentUser.displayName}</span>
+					<img src={currentUser.photoURL} alt='' />
+				</div>
 				{showSet && (
 					<div className='navbarSet'>
-						<button onClick={() => signOut(auth)}>Logout</button>
+						<button
+							onClick={() => {
+								signOut(auth)
+								dispatch({ type: 'CHENGE_USER', payload: {} })
+							}}
+						>
+							Logout
+						</button>
 						<button onClick={() => navigate('/settings')}>Settings</button>
 						{/* <button
 							onClick={() => {

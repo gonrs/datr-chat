@@ -12,7 +12,7 @@ html {
 	background: none;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: #3f3aba;
+	background-color: #24242f;
 	border-radius: 8px;
 }
 textarea:focus,

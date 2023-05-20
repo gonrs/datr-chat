@@ -38,7 +38,7 @@ function Chats() {
 						return (
 							<div
 								key={chat[0]}
-								className={`userChat `}
+								className={`userChat`}
 								onClick={() => handleSelect(chat[1].userInfo)}
 							>
 								<img src={chat[1].userInfo?.photoURL} alt='' />

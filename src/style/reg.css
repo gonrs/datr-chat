@@ -1,14 +1,12 @@
 .formContainer {
 	height: 100vh;
-	background-color: #121829;
+	background-color: #24242f;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 .formWrapper {
-	background-color: #171f35;
-	border: 3px solid #18147f;
-	box-shadow: 0px 0px 20px #18147f;
+	background-color: #3a3a47;
 	padding: 20px 20px;
 	border-radius: 10px;
 	display: flex;
@@ -43,23 +41,23 @@
 	padding: 15px;
 	border-radius: 5px;
 	border: none;
-	border: 1px solid #222e4e;
-	color: #fff;
-	background-color: #222e4e;
+	border: 1px solid #c4c4cf;
+	color: #000000;
+	background-color: #c4c4cf;
 }
 .form-input:focus {
 	border: none;
-	border: 1px solid #18147f;
+	border: 2px solid #24242f;
 }
 .form-input::placeholder {
-	color: rgb(186, 184, 184);
+	color: rgb(0, 0, 0);
 }
 .title {
 	color: #cdcdf1;
 	font-size: 12px;
 }
 .form button {
-	background-color: #1c197f;
+	background-color: #24242f;
 	color: #fff;
 	padding: 10px;
 	font-weight: bold;

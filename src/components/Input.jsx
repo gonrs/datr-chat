@@ -12,6 +12,7 @@ import { v4 as uuid } from 'uuid'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import File from './File'
 
 function Input() {
 	const [text, setText] = useState('')
@@ -23,28 +24,34 @@ function Input() {
 		e.preventDefault()
 		if (text !== '') {
 			if (img) {
-				const storageRef = ref(storage, uuid())
-
-				const uploadTask = uploadBytesResumable(storageRef, img)
-				uploadTask.on(
-					error => {
-						console.log(error)
-						console.log('upload error')
-					},
-					() => {
-						getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-							await updateDoc(doc(db, 'chats', data.chatId), {
-								message: arrayUnion({
-									id: uuid(),
-									text,
-									senderId: currentUser.uid,
-									date: Timestamp.now(),
-									img: downloadURL,
-								}),
-							})
-						})
-					}
-				)
+				try {
+					// const storageRef = ref(storage, uuid())
+					const storageRef = ref(storage, `mes+${uuid()}`)
+					const uploadTask = uploadBytesResumable(storageRef, img)
+					uploadTask.on(
+						error => {
+							console.log(error)
+							console.log('upload error')
+						},
+						() => {
+							getDownloadURL(uploadTask.snapshot.ref).then(
+								async downloadURL => {
+									await updateDoc(doc(db, 'chats', data.chatId), {
+										message: arrayUnion({
+											id: uuid(),
+											text,
+											senderId: currentUser.uid,
+											date: Timestamp.now(),
+											img: downloadURL,
+										}),
+									})
+								}
+							)
+						}
+					)
+				} catch (e) {
+					console.log(e)
+				}
 			} else {
 				await updateDoc(doc(db, 'chats', data.chatId), {
 					message: arrayUnion({
@@ -71,6 +78,7 @@ function Input() {
 			setImg(null)
 		}
 	}
+	const BgFile = img ? `${URL.createObjectURL(img)}` : ''
 	return (
 		<form onSubmit={handleClick} className='chatInput'>
 			<input
@@ -90,6 +98,7 @@ function Input() {
 					<img src={Img} alt='' />
 				</label>
 				<button type='submit'>Send</button>
+				{img && <File file={BgFile} setImg={setImg} />}
 			</div>
 		</form>
 	)
