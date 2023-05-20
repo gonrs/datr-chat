@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Img from '../img/img.png'
 import {
 	Timestamp,
@@ -17,7 +17,7 @@ import File from './File'
 function Input() {
 	const [text, setText] = useState('')
 	const [img, setImg] = useState(null)
-
+	const RefFile = useRef(null)
 	const { currentUser } = useContext(AuthContext)
 	const { data } = useContext(ChatContext)
 	async function handleClick(e) {
@@ -78,7 +78,12 @@ function Input() {
 			setImg(null)
 		}
 	}
+	function setRef() {
+		RefFile.current.value = null
+		setImg(null)
+	}
 	const BgFile = img ? `${URL.createObjectURL(img)}` : ''
+	console.log(img)
 	return (
 		<form onSubmit={handleClick} className='chatInput'>
 			<input
@@ -90,6 +95,7 @@ function Input() {
 			<div className='send'>
 				<input
 					type='file'
+					ref={RefFile}
 					onChange={e => setImg(e.target.files[0])}
 					style={{ display: 'none' }}
 					id='file'
@@ -98,7 +104,7 @@ function Input() {
 					<img src={Img} alt='' />
 				</label>
 				<button type='submit'>Send</button>
-				{img && <File file={BgFile} setImg={setImg} />}
+				{img && <File file={BgFile} setRef={setRef} />}
 			</div>
 		</form>
 	)
