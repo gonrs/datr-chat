@@ -21,30 +21,31 @@ function Settings() {
 	//
 	async function handleSubmit(e) {
 		e.preventDefault()
-		try {
-			const storageRef = ref(storage, currentUser.email)
-			const uploadTask = uploadBytesResumable(storageRef, file)
-			uploadTask.on(
-				error => {
-					console.log(error)
-					console.log('upload error')
-				},
-				() => {
-					getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-						await updateProfile(currentUser, {
-							displayName: value,
-							photoURL: downloadURL,
+		if (value !== currentUser.displayName || file !== null) {
+			try {
+				const storageRef = ref(storage, currentUser.email)
+				const uploadTask = uploadBytesResumable(storageRef, file)
+				uploadTask.on(
+					error => {
+						console.log(error)
+						console.log('upload error')
+					},
+					() => {
+						getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+							await updateProfile(currentUser, {
+								displayName: value,
+								photoURL: downloadURL,
+							})
+							await updateDoc(doc(db, 'users', currentUser?.uid), {
+								displayName: value,
+								photoURL: downloadURL,
+							})
 						})
-						await updateDoc(doc(db, 'users', currentUser?.uid), {
-							displayName: value,
-							photoURL: downloadURL,
-						})
-						navigate('/')
-					})
-				}
-			)
-		} catch (err) {
-			console.log(err)
+					}
+				)
+			} catch (err) {
+				console.log(err)
+			}
 		}
 	}
 	//
