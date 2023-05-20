@@ -22,8 +22,8 @@ function Input() {
 	const { data } = useContext(ChatContext)
 	async function handleClick(e) {
 		e.preventDefault()
-		if (text !== '') {
-			if (img) {
+		if (img || text !== '') {
+			if (img && text !== '') {
 				try {
 					// const storageRef = ref(storage, uuid())
 					const storageRef = ref(storage, `mes+${uuid()}`)
@@ -52,7 +52,8 @@ function Input() {
 				} catch (e) {
 					console.log(e)
 				}
-			} else {
+			}
+			if (!img && text !== '') {
 				await updateDoc(doc(db, 'chats', data.chatId), {
 					message: arrayUnion({
 						id: uuid(),
@@ -62,9 +63,39 @@ function Input() {
 					}),
 				})
 			}
+			if (img && text === '') {
+				try {
+					// const storageRef = ref(storage, uuid())
+					const storageRef = ref(storage, `mes+${uuid()}`)
+					const uploadTask = uploadBytesResumable(storageRef, img)
+					uploadTask.on(
+						error => {
+							console.log(error)
+							console.log('upload error')
+						},
+						() => {
+							getDownloadURL(uploadTask.snapshot.ref).then(
+								async downloadURL => {
+									await updateDoc(doc(db, 'chats', data.chatId), {
+										message: arrayUnion({
+											id: uuid(),
+											text: '',
+											senderId: currentUser.uid,
+											date: Timestamp.now(),
+											img: downloadURL,
+										}),
+									})
+								}
+							)
+						}
+					)
+				} catch (e) {
+					console.log(e)
+				}
+			}
 			await updateDoc(doc(db, 'userChats', currentUser.uid), {
 				[data.chatId + '.lastMessage']: {
-					text,
+					text: text !== '' ? text : 'img',
 				},
 				[data.chatId + '.date']: serverTimestamp(),
 			})
@@ -79,8 +110,9 @@ function Input() {
 		}
 	}
 	function setRef() {
+		console.log('clear')
 		RefFile.current.value = null
-		setImg(null)
+		setImg(RefFile.current.value)
 	}
 	const BgFile = img ? `${URL.createObjectURL(img)}` : ''
 	console.log(img)

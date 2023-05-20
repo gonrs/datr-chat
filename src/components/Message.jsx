@@ -29,7 +29,9 @@ function Message({ message }) {
 				<span>now</span>
 			</div>
 			<div className='messageContent '>
-				<p>{message.text}</p>
+				<p className={`${!message.text && 'messageContentP'}`}>
+					{message?.text}
+				</p>
 				{message?.img && <img src={message.img} alt='' />}
 			</div>
 		</div>

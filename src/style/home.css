@@ -627,3 +627,6 @@ h1 {
 	cursor: pointer;
 	position: absolute;
 }
+.messageContentP {
+	display: none;
+}
