@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Cam from '../img/cam.png'
 import More from '../img/more.png'
 import Messages from './Messages'
@@ -33,7 +33,10 @@ function Chat() {
 	function closeImg() {
 		setshow(null)
 	}
-	console.log(show)
+	useEffect(() => {
+		closeImg()
+	}, [data])
+
 	return (
 		<div className='chat'>
 			{data.user.uid && data.user.uid !== currentUser.uid ? (
