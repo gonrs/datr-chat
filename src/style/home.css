@@ -158,7 +158,12 @@
 .home.white .chatModalSet button:hover {
 	background-color: #9a9a9d;
 }
-
+.home.white .messageImg {
+	background-color: #e1e1ef;
+}
+.home.white .messageImg p {
+	color: #000;
+}
 .home.white .chatModalSet p {
 	border-bottom: 3px solid #9a9a9d;
 }
