@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { ChatContext } from '../context/ChatContext'
 import { AuthContext } from '../context/AuthContext'
 
-function Message({ message }) {
+function Message({ message, openImg }) {
 	const { currentUser } = useContext(AuthContext)
 	const { data } = useContext(ChatContext)
 	const ref = useRef()
@@ -32,7 +32,16 @@ function Message({ message }) {
 				<p className={`${!message.text && 'messageContentP'}`}>
 					{message?.text}
 				</p>
-				{message?.img && <img src={message.img} alt='' />}
+				{message?.img && (
+					<img
+						onClick={() => {
+							openImg(message.img)
+						}}
+						style={{ cursor: 'pointer' }}
+						src={message.img}
+						alt=''
+					/>
+				)}
 			</div>
 		</div>
 	)

@@ -4,7 +4,7 @@ import { ChatContext } from '../context/ChatContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase'
 
-function Messages() {
+function Messages({ openImg }) {
 	const { data } = useContext(ChatContext)
 	const [messages, setMessages] = useState([])
 	useEffect(() => {
@@ -15,10 +15,11 @@ function Messages() {
 			onSub()
 		}
 	}, [data.chatId])
+
 	return (
 		<div className='messages'>
 			{messages?.map((value, index) => {
-				return <Message key={index} message={value} />
+				return <Message key={index} openImg={openImg} message={value} />
 			})}
 		</div>
 	)

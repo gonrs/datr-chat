@@ -101,7 +101,7 @@ function Input() {
 			})
 			await updateDoc(doc(db, 'userChats', data.user.uid), {
 				[data.chatId + '.lastMessage']: {
-					text,
+					text: text !== '' ? text : 'img',
 				},
 				[data.chatId + '.date']: serverTimestamp(),
 			})
@@ -115,7 +115,6 @@ function Input() {
 		setImg(RefFile.current.value)
 	}
 	const BgFile = img ? `${URL.createObjectURL(img)}` : ''
-	console.log(img)
 	return (
 		<form onSubmit={handleClick} className='chatInput'>
 			<input

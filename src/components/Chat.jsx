@@ -26,6 +26,14 @@ function Chat() {
 		setShowModal(false)
 	}
 	//
+	const [show, setshow] = useState(null)
+	function openImg(img) {
+		setshow(img)
+	}
+	function closeImg() {
+		setshow(null)
+	}
+	console.log(show)
 	return (
 		<div className='chat'>
 			{data.user.uid && data.user.uid !== currentUser.uid ? (
@@ -63,7 +71,17 @@ function Chat() {
 							)}
 						</div>
 					</div>
-					<Messages />
+					{show !== null ? (
+						<div className='messageImg'>
+							<p onClick={closeImg}>Close</p>
+							<div className='mesImg'>
+								<img src={show} alt='' />
+							</div>
+						</div>
+					) : (
+						''
+					)}
+					<Messages openImg={openImg} />
 					<Input />
 				</>
 			) : (
