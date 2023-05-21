@@ -11,6 +11,7 @@ function Message({ message, openImg }) {
 	}, [message])
 	// let h = Math.round(message.date.seconds / 60 / 60 / 24)
 	// let m = Math.round(message.date.seconds / 60 / 60)
+
 	return (
 		<div
 			ref={ref}
@@ -25,8 +26,7 @@ function Message({ message, openImg }) {
 					}
 					alt=''
 				/>
-				{/* <span>{`${h}:${m}`}</span> */}
-				<span>now</span>
+				<span>{message?.date}</span>
 			</div>
 			<div className='messageContent '>
 				<p className={`${!message.text && 'messageContentP'}`}>

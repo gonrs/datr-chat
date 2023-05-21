@@ -349,8 +349,13 @@ h1 {
 .messageInfo {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	gap: 10px;
 	color: gray;
 	font-weight: 300;
+}
+.messageInfo span {
+	font-size: 15px;
 }
 .messageInfo img {
 	width: 40px;

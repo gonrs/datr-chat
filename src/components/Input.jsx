@@ -1,12 +1,6 @@
 import React, { useContext, useRef, useState } from 'react'
 import Img from '../img/img.png'
-import {
-	Timestamp,
-	arrayUnion,
-	doc,
-	serverTimestamp,
-	updateDoc,
-} from 'firebase/firestore'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db, storage } from '../firebase'
 import { v4 as uuid } from 'uuid'
 import { AuthContext } from '../context/AuthContext'
@@ -20,6 +14,8 @@ function Input() {
 	const RefFile = useRef(null)
 	const { currentUser } = useContext(AuthContext)
 	const { data } = useContext(ChatContext)
+	const currentTime = new Date().toLocaleTimeString()
+
 	async function handleClick(e) {
 		e.preventDefault()
 		if (img || text !== '') {
@@ -41,7 +37,7 @@ function Input() {
 											id: uuid(),
 											text,
 											senderId: currentUser.uid,
-											date: Timestamp.now(),
+											date: currentTime,
 											img: downloadURL,
 										}),
 									})
@@ -59,7 +55,7 @@ function Input() {
 						id: uuid(),
 						text,
 						senderId: currentUser.uid,
-						date: Timestamp.now(),
+						date: currentTime,
 					}),
 				})
 			}
@@ -81,7 +77,7 @@ function Input() {
 											id: uuid(),
 											text: '',
 											senderId: currentUser.uid,
-											date: Timestamp.now(),
+											date: currentTime,
 											img: downloadURL,
 										}),
 									})
@@ -97,13 +93,13 @@ function Input() {
 				[data.chatId + '.lastMessage']: {
 					text: text !== '' ? text : 'img',
 				},
-				[data.chatId + '.date']: serverTimestamp(),
+				[data.chatId + '.date']: currentTime,
 			})
 			await updateDoc(doc(db, 'userChats', data.user.uid), {
 				[data.chatId + '.lastMessage']: {
 					text: text !== '' ? text : 'img',
 				},
-				[data.chatId + '.date']: serverTimestamp(),
+				[data.chatId + '.date']: currentTime,
 			})
 			setText('')
 			setImg(null)

@@ -11,6 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 function Settings() {
 	// const { currentUser } = useContext(AuthContext)
+	// const { data } = useContext(ChatContext)
 	const [currentUser] = useAuthState(auth)
 	const [value, setValue] = useState(currentUser.displayName)
 	const [file, setFile] = useState(null)
@@ -48,6 +49,7 @@ function Settings() {
 			}
 		}
 	}
+
 	//
 	const navigate = useNavigate()
 	//
@@ -59,7 +61,6 @@ function Settings() {
 		})
 	}
 	const { theme } = useColor(currentUser)
-	console.log(currentUser)
 	return (
 		<div className={`settingsWrap ${theme}`}>
 			<div className='containerSet'>
