@@ -201,9 +201,13 @@ h1 {
 	background-color: #24242f;
 	height: 50px;
 	padding: 10px;
-	justify-content: flex-end;
+	justify-content: space-between;
 
 	color: #ddddf7;
+}
+.navbarLink {
+	color: #e88484;
+	text-decoration: none;
 }
 .navbar-logo {
 	font-weight: bold;

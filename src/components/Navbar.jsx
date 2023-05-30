@@ -23,6 +23,13 @@ function Navbar() {
 	const { dispatch } = useContext(ChatContext)
 	return (
 		<div className='navbar'>
+			<a
+				href='https://github.com/zim00?tab=repositories'
+				className='navbarLink'
+				target='_blnack'
+			>
+				Author
+			</a>
 			<div className='userSet'>
 				<div
 					onClick={() => {
