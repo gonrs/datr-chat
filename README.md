@@ -1,1 +1,1 @@
-Link to Site = https://datr.netlify.app/
+Link to app = https://datr.netlify.app/
