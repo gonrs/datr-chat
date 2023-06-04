@@ -1,1 +1,1 @@
-Link to app = https://datr.netlify.app/
+Link to app = https://datr-chat.netlify.app/
