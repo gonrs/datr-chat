@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Cam from '../img/cam.png'
 import More from '../img/more.png'
 import Messages from './Messages'
 import Input from './Input'
