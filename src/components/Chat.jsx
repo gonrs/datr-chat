@@ -47,7 +47,6 @@ function Chat() {
 						) : null}
 						<span>{data.user?.displayName}</span>
 						<div className='chatIcons'>
-							<img src={Cam} alt='' />
 							<button
 								onClick={() => {
 									setShowModal(!showModal)
