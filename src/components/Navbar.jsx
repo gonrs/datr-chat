@@ -24,7 +24,7 @@ function Navbar() {
 	return (
 		<div className='navbar'>
 			<a
-				href='https://github.com/zim00?tab=repositories'
+				href='https://github.com/gonrs?tab=repositories'
 				className='navbarLink'
 				target='_blnack'
 			>
